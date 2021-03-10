@@ -4,7 +4,7 @@
 
 If your looking to take a trip to the island of Oahu in Hawaii to visit Honolulu, it's always best to do a quick analysis of what weather to expect while you are there.  This repo utilizes a climate database in sqllite form that contains observed temperature and precipitation data from 01/01/2010 - 08/23/2017.  Utilizing SQLAlchemy in Python, a local API was created such that the user can choose a route to look at all precipitation data, or can enter a given date range for the anticipated vacation to return the min, avg, and max temps.
  
-![hawaii]()
+![hawaii](https://github.com/dborowski16/hawaii-climate-analysis/blob/master/images/oahu.png)
 
 # Table of Contents
 
