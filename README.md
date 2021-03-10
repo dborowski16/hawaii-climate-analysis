@@ -57,4 +57,4 @@ For a trip taken from January 1st to January 7th, one could expect to see a high
 
 The last step was to utilize a Flask app that would run the SQLAlchemy queries used above and to create API routes for the given results. The routes available from Flask will show the precipitation, station info, last 12 month temperature, and two routes that will give the daily normal temperatures via user input, either a start date, or a start and end date, as inputed into route.
 
-![json](https://github.com/dborowski16/hawaii-climate-analysis/blob/master/images/precip.png)
+![json](https://github.com/dborowski16/hawaii-climate-analysis/blob/master/images/json.png)
