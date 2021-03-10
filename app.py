@@ -107,13 +107,26 @@ def temp_by_start_date(start_date):
 def temp_by_date_range(start_date, end_date):
     session = Session(engine)
 
-    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
-        filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
+    def daily_normals(date):
+        sel = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+        return session.query(*sel).filter(func.strftime("%m-%d", Measurement.date) == date).all()
+
+    start = dt.datetime.strptime(start_date, '%Y-%m-%d')
+    end = dt.datetime.strptime(end_date, '%Y-%m-%d')
+
+    days = []
+    normals = []
+
+    while start <= end:
+        days.append(dt.datetime.strftime(start, '%Y-%m-%d'))
+        daystr = dt.datetime.strftime(start, '%m-%d')
+        normals.append(list(np.ravel(daily_normals(daystr))))
+        start = start + dt.timedelta(days=1)
 
     session.close()
 
     temp_by_date_range = []
-    for min, avg, max in results:
+    for min, avg, max in normals:
         temp_by_range_dic = {}
         temp_by_range_dic['TMIN'] = min
         temp_by_range_dic['TAVE'] = avg
@@ -121,6 +134,25 @@ def temp_by_date_range(start_date, end_date):
         temp_by_date_range.append(temp_by_range_dic)
 
     return jsonify(temp_by_date_range)
+#
+# @app.route("/api/v1.0/<start_date>/<end_date>")
+# def temp_by_date_range(start_date, end_date):
+#     session = Session(engine)
+#
+#     results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+#         filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
+#
+#     session.close()
+#
+#     temp_by_date_range = []
+#     for min, avg, max in results:
+#         temp_by_range_dic = {}
+#         temp_by_range_dic['TMIN'] = min
+#         temp_by_range_dic['TAVE'] = avg
+#         temp_by_range_dic['TMAX'] = max
+#         temp_by_date_range.append(temp_by_range_dic)
+#
+#     return jsonify(temp_by_date_range)
 
 if __name__ == '__main__':
     app.run(debug=True)
