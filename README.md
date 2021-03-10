@@ -4,7 +4,7 @@
 
 If your looking to take a trip to the island of Oahu in Hawaii to visit Honolulu, it's always best to do a quick analysis of what weather to expect while you are there.  This repo utilizes a climate database in sqllite form that contains observed temperature and precipitation data from 01/01/2010 - 08/23/2017.  Utilizing SQLAlchemy in Python, a local API was created such that the user can choose a route to look at all precipitation data, or can enter a given date range for the anticipated vacation to return the min, avg, and max temps.
  
-![html gif]()
+![hawaii]()
 
 # Table of Contents
 
@@ -53,7 +53,7 @@ The last bit of analysis was to create a function that will take in a start and 
 
 For a trip taken from January 1st to January 7th, one could expect to see a high of 77, a low of 56, and an average of 70 degrees.
 
-# Using Flask with Mongo DB
+# Using Flask with app.py
 
 The last step was to utilize a Flask app that would run the SQLAlchemy queries used above and to create API routes for the given results. The routes available from Flask will show the precipitation, station info, last 12 month temperature, and two routes that will give the daily normal temperatures via user input, either a start date, or a start and end date, as inputed into route.
 
