@@ -11,7 +11,8 @@ If your looking to take a trip to the island of Oahu in Hawaii to visit Honolulu
 1. Dependencies
 2. How to locally run this Repo
 3. Files in this Repo
-4. Using Flask
+4. Climate Analysis
+5. Using Flask with app.py
 
 # Dependencies
 In order to run the code in this repo, the following dependencies for python will be needed in the local environment
@@ -30,24 +31,13 @@ Once the repo is downloaded to your local machine, all the user has to do is run
 # Files in this Repo
 File/Folder | Info
 ------------ | -------------
-Images :file_folder: | Contains screenshots from the first iteration of the repo
-ipynb_notebooks :file_folder: | Contains the jupyter notebook to develop the scraping code prior to writing it to a python script
-Templates :file_folder: | Contains the index.html file that will host the images, news, and data for the scrape
-scrape_mars.py | Code to scrape the websites for the latest information and store is to a data dictionary
-app.py | File that runs a flask app that will create a pymongo db to store the scraped data when calling the scrape_mars.py script.  It has a "/" route that will render the index.html template
-chromedriver.exe | Driver file that allows Python to scrape websites through Google Chrome utilizing the Splinter package
+images :file_folder: | Contains screenshots from the Jupyter Notebook analysis
+ipynb_notebooks :file_folder: | Contains the jupyter notebook to develop the code for climate anlysis and database queries for the python script
+app.py | File that runs a flask app that will create separate routes base upon various queries of the climate database through SQLAlchemy
 
-# Web Scraping
+# Climate Analysis
 
-There are 4 different website url's that are scraped to produce the output template:
-* Latest News Article - "https://mars.nasa.gov/news/"
-* Featured Mars Image - "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
-* Facts about Mars - "https://space-facts.com/mars/"
-* Mars Hemispheres - "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
 
-UPDATE 022521: When re-running the script on 02/25/2021, the link to the featured image on NASA's JPL website was no longer there, so code was updated to pull the Image of the Week from the mars.nasa.gov website instead
-
-Jupyter notebook was used with the Splinter and Beautiful Soup packages to scrape through HTML code on each of the websites to gather texts and url for the various aspects app.  In order to produce the table of Mars facts, the space-facts website was scraped and a pandas dataframe was created, then converted to html for implementation into index.html
 
 # Using Flask with Mongo DB
 
